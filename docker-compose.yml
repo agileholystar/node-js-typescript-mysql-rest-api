@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql-server
+    ports:
+      - "3306:3306"
+    environment: # 환경변수 설정 해주세요. root 이외에 다른 유저를 만들어서 사용하셔도 됩니다.
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE}
+      # MYSQL_USER: ${MYSQL_USER}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./data/:/var/lib/mysql # -v 옵션 (다렉토리 마운트 설정)
